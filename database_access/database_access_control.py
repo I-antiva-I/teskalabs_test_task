@@ -1,0 +1,55 @@
+from typing import List
+
+from mysql import connector
+from mysql.connector import MySQLConnection
+from mysql.connector.abstracts import MySQLCursorAbstract, MySQLConnectionAbstract
+from mysql.connector.pooling import PooledMySQLConnection
+
+from models.lxc_item import LXCItem
+from models.network import Network
+
+
+class DatabaseAccessControl:
+    cursor: MySQLCursorAbstract = None
+    connection: MySQLConnection = None
+
+    @staticmethod
+    def connect_to_database():
+        DatabaseAccessControl.connection = connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="TeskaLabsTestTask"
+        )
+        DatabaseAccessControl.cursor = DatabaseAccessControl.connection.cursor()
+
+    @staticmethod
+    def insert_lxc_item(lxc_item: LXCItem) -> int:
+        sql_query = ("INSERT INTO LXCItems (name, cpu_usage, memory_usage, created_timestamp, status) "
+                     "VALUES (%s, %s, %s, %s, %s)")
+
+        DatabaseAccessControl.cursor.execute(sql_query, lxc_item.as_list())
+        DatabaseAccessControl.connection.commit()
+
+        return DatabaseAccessControl.cursor.lastrowid
+
+    @staticmethod
+    def insert_network(network: Network) -> int:
+        sql_query = ("INSERT INTO Networks (name, ip_address) "
+                     "VALUES (%s, %s)")
+
+        DatabaseAccessControl.cursor.execute(sql_query, network.as_list())
+        DatabaseAccessControl.connection.commit()
+
+        return DatabaseAccessControl.cursor.lastrowid
+
+    @staticmethod
+    def insert_lxc_item_network(lxc_item_id: int, network_id: int) -> None:
+        sql_query = ("INSERT INTO LXCItems_Networks (lxc_item_id , network_id )"
+                     "VALUES (%s, %s)")
+
+        DatabaseAccessControl.cursor.execute(sql_query, [lxc_item_id, network_id])
+        DatabaseAccessControl.connection.commit()
+
+        return
+
