@@ -3,8 +3,8 @@ class Network:
         self.__name: str = name
         self.__ip_address: str = ip_address
 
-    def as_list(self) -> list:
-        return [self.__name, self.__ip_address]
+    def as_query_parameters(self, lxc_item_id: int) -> list:
+        return [self.__name, self.__ip_address, lxc_item_id]
 
     def is_valid(self):
         return True

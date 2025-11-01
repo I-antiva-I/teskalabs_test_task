@@ -1,5 +1,7 @@
 from datetime import datetime
-from typing import Tuple
+from typing import Tuple, List
+
+from models.network import Network
 
 
 class LXCItem:
@@ -14,8 +16,15 @@ class LXCItem:
         self.__memory_usage: int = -1 if (memory_usage is None) else memory_usage
         self.__created_timestamp: int = LXCItem.__datetime_to_timestamp(created_at)
         self.__status = status
+        self.__networks = []
 
-    def as_list(self) -> list:
+    def add_network(self, network: Network):
+        self.__networks.append(network)
+
+    def get_networks(self) -> List[Network]:
+        return self.__networks
+
+    def as_query_parameters(self) -> list:
         return [self.__name, self.__cpu_usage, self.__memory_usage, self.__created_timestamp, self.__status]
 
     def is_valid(self):

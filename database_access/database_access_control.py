@@ -28,28 +28,18 @@ class DatabaseAccessControl:
         sql_query = ("INSERT INTO LXCItems (name, cpu_usage, memory_usage, created_timestamp, status) "
                      "VALUES (%s, %s, %s, %s, %s)")
 
-        DatabaseAccessControl.cursor.execute(sql_query, lxc_item.as_list())
+        DatabaseAccessControl.cursor.execute(sql_query, lxc_item.as_query_parameters())
         DatabaseAccessControl.connection.commit()
 
         return DatabaseAccessControl.cursor.lastrowid
 
     @staticmethod
-    def insert_network(network: Network) -> int:
-        sql_query = ("INSERT INTO Networks (name, ip_address) "
-                     "VALUES (%s, %s)")
+    def insert_network(network: Network, lxc_item_id: int) -> int:
+        sql_query = ("INSERT INTO Networks (name, ip_address, lxc_item_id) "
+                     "VALUES (%s, %s, %s)")
 
-        DatabaseAccessControl.cursor.execute(sql_query, network.as_list())
+        DatabaseAccessControl.cursor.execute(sql_query, network.as_query_parameters(lxc_item_id))
         DatabaseAccessControl.connection.commit()
 
         return DatabaseAccessControl.cursor.lastrowid
-
-    @staticmethod
-    def insert_lxc_item_network(lxc_item_id: int, network_id: int) -> None:
-        sql_query = ("INSERT INTO LXCItems_Networks (lxc_item_id , network_id )"
-                     "VALUES (%s, %s)")
-
-        DatabaseAccessControl.cursor.execute(sql_query, [lxc_item_id, network_id])
-        DatabaseAccessControl.connection.commit()
-
-        return
 
