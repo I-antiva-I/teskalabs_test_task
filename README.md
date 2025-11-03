@@ -2,10 +2,10 @@
 
 
 ## TODO
-- [ ] DB
-- [ ] Read JSON
-- [ ] JSON -> Class
-- [ ] Class -> DB
+- [X] DB
+- [X] Read JSON
+- [X] JSON -> Class
+- [X] Class -> DB
 - [ ] Async
 - [ ] Docker
 
