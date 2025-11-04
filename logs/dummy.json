@@ -1,0 +1,107 @@
+[
+   {
+      "devices" : {
+         "root" : {
+            "type" : "disk",
+            "path" : "/"
+         }
+      },
+      "architecture" : "x86_64",
+      "stateful" : false,
+      "last_used_at" : "0001-01-01T00:00:00Z",
+      "state" : {
+         "pid" : 8514,
+         "memory" : {
+            "usage" : 1234567,
+            "usage_peak" : 751091712,
+            "swap_usage" : 0,
+            "swap_usage_peak" : 0
+         },
+         "processes" : 66,
+         "status_code" : 103,
+         "network" : {
+            "at-work" : {
+               "type" : "broadcast",
+               "host_name" : "",
+               "hwaddr" : "02:42:a3:71:46:d3",
+               "mtu" : 1500,
+               "state" : "up",
+               "addresses" : [
+                  {
+                     "scope" : "global",
+                     "netmask" : "16",
+                     "family" : "inet",
+                     "address" : "255.255.255.255"
+                  },
+                  {
+                     "address" : "aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa",
+                     "family" : "inet6",
+                     "netmask" : "64",
+                     "scope" : "link"
+                  }
+               ],
+               "counters" : {
+                  "packets_sent" : 16215,
+                  "bytes_received" : 33733741,
+                  "bytes_sent" : 1347722,
+                  "packets_received" : 14936
+               }
+            }
+         },
+         "status" : "Running",
+         "cpu" : {
+            "usage" : 0
+         },
+         "disk" : {
+            "root" : {
+               "usage" : 38291640320
+            }
+         }
+      },
+      "expanded_config" : {
+         "volatile.base_image" : "aa7a2cea8695e89643c1f100155eee086d74961d3cb0c9412228a995f38e4806",
+         "volatile.idmap.base" : "0",
+         "volatile.last_state.idmap" : "[{\"Isuid\":true,\"Isgid\":false,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536},{\"Isuid\":false,\"Isgid\":true,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536}]",
+         "linux.kernel_modules" : "overlay, nf_nat",
+         "security.nesting" : "true",
+         "volatile.eth0.hwaddr" : "00:16:3e:f1:d3:b2",
+         "volatile.idmap.next" : "[{\"Isuid\":true,\"Isgid\":false,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536},{\"Isuid\":false,\"Isgid\":true,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536}]",
+         "volatile.last_state.power" : "RUNNING"
+      },
+      "description" : "",
+      "name" : "DUMMY TEST",
+      "profiles" : [
+         "docker"
+      ],
+      "config" : {
+         "volatile.base_image" : "aa7a2cea8695e89643c1f100155eee086d74961d3cb0c9412228a995f38e4806",
+         "volatile.eth0.hwaddr" : "00:16:3e:f1:d3:b2",
+         "volatile.idmap.next" : "[{\"Isuid\":true,\"Isgid\":false,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536},{\"Isuid\":false,\"Isgid\":true,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536}]",
+         "volatile.idmap.base" : "0",
+         "volatile.last_state.power" : "RUNNING",
+         "volatile.last_state.idmap" : "[{\"Isuid\":true,\"Isgid\":false,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536},{\"Isuid\":false,\"Isgid\":true,\"Hostid\":100000,\"Nsid\":0,\"Maprange\":65536}]"
+      },
+      "status_code" : 103,
+      "ephemeral" : false,
+      "status" : "Testing",
+      "created_at" : "2025-05-25T12:34:56+00:00",
+      "expanded_devices" : {
+         "root" : {
+            "type" : "disk",
+            "path" : "/"
+         },
+         "aadisable" : {
+            "type" : "disk",
+            "path" : "/sys/module/apparmor/parameters/enabled",
+            "source" : "/dev/null"
+         },
+         "eth0" : {
+            "parent" : "enp2s0",
+            "nictype" : "macvlan",
+            "name" : "eth0",
+            "type" : "nic"
+         }
+      },
+      "snapshots" : []
+   }
+]
