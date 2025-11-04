@@ -1,0 +1,57 @@
+# (?) Version of the compose file (non-mandatory for new versions of Docker-Compose)
+version: "3.9"
+
+# (?)
+services:
+  app:
+    container_name: python_app_container
+    # image: python:3.12-slim
+    build: ./app/
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./logs:/logs
+    depends_on:
+      - database
+    command: tail -f /dev/null # (?) Keep the container running indefinitely
+
+  database:
+    container_name: mysql_container
+    image: mysql:latest
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+  admin:
+    container_name: phpmyadmin_container
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "${PMA_PORT}:80"
+    environment:
+      PMA_HOST: database
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - database
+
+volumes:
+  mysql_data:
+  logs:
+
+
+
+
+
