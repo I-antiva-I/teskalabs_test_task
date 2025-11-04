@@ -1,7 +1,7 @@
 class Network:
     def __init__(self, name: str, ip_address: str):
-        self.__name: str = name
-        self.__ip_address: str = ip_address
+        self.__name: str = "I have no name" if (name is None) else name
+        self.__ip_address: str = "None" if (ip_address is None) else ip_address
 
     def as_query_parameters(self, lxc_item_id: int) -> list:
         return [self.__name, self.__ip_address, lxc_item_id]
