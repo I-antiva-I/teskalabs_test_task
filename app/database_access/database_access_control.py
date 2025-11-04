@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 from mysql import connector
@@ -16,10 +17,11 @@ class DatabaseAccessControl:
     @staticmethod
     def connect_to_database():
         DatabaseAccessControl.connection = connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="TeskaLabsTestTask"
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_DATABASE"),
+            port=3306,
         )
         DatabaseAccessControl.cursor = DatabaseAccessControl.connection.cursor()
 
@@ -42,4 +44,5 @@ class DatabaseAccessControl:
         DatabaseAccessControl.connection.commit()
 
         return DatabaseAccessControl.cursor.lastrowid
+
 
