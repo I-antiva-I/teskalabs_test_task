@@ -27,12 +27,14 @@ DatabaseAccessControl.connect_to_database()
 lxc_items = JSONReader.read_json_data(selected_file)
 
 for lxc_item in lxc_items:
-    lxc_item_id = DatabaseAccessControl.insert_lxc_item(lxc_item)
-    networks = lxc_item.get_networks()
+    if lxc_item.is_valid():
+        lxc_item_id = DatabaseAccessControl.insert_lxc_item(lxc_item)
+        networks = lxc_item.get_networks()
 
-    if networks:
-        for network in networks:
-            DatabaseAccessControl.insert_network(network, lxc_item_id)
+        if networks:
+            for network in networks:
+                if network.is_valid():
+                    DatabaseAccessControl.insert_network(network, lxc_item_id)
 
 end = time.perf_counter()
 print(f"Time passed: {end - start:.3f} s")
