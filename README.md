@@ -7,7 +7,7 @@
 - [X] JSON -> Class
 - [X] Class -> DB
 - [ ] Async
-- [ ] Docker
+- [X] Docker
 
 ## Hmmm...
 - Bad file format/structure;

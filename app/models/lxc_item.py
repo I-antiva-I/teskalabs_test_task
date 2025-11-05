@@ -8,14 +8,14 @@ class LXCItem:
 
     @staticmethod
     def __datetime_to_timestamp(created_time: str) -> int:
-        return int(round(datetime.fromisoformat(created_time).timestamp()))
+        return -1 if created_time is None else int(round(datetime.fromisoformat(created_time).timestamp()))
 
     def __init__(self, name: str, cpu_usage: int, memory_usage: int, status: str, created_at: str):
-        self.__name: str = name
+        self.__name: str = "I have no name" if (name is None) else name
         self.__cpu_usage: int = -1 if (cpu_usage is None) else cpu_usage
         self.__memory_usage: int = -1 if (memory_usage is None) else memory_usage
         self.__created_timestamp: int = LXCItem.__datetime_to_timestamp(created_at)
-        self.__status = status
+        self.__status = "NONE" if (status is None) else status
         self.__networks = []
 
     def add_network(self, network: Network):
