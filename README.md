@@ -6,7 +6,7 @@
 - [X] Read JSON
 - [X] JSON -> Class
 - [X] Class -> DB
-- [ ] Async
+- [X] Async
 - [X] Docker
 
 ## Hmmm...
