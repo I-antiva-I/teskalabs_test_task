@@ -1,16 +1,12 @@
 # TeskaLabs | Test Task
+JSON parser (sync approach)
 
-
-## TODO
-- [X] DB
-- [X] Read JSON
-- [X] JSON -> Class
-- [X] Class -> DB
-- [ ] Async
-- [X] Docker
-
-## Hmmm...
-- Bad file format/structure;
-- Data validation;
-- Really big JSON file;
-- SQL injection;
+## STEPS
+- download repo (git clone -b sync https://github.com/I-antiva-I/teskalabs_test_task.git)
+- open repo
+- create .env (based on .env.example)
+- open cmd
+- run docker compose up --build
+- run docker exec -it python_app_container python /app/main.py
+- select JSON file
+- check with phpMyAdmin (http://localhost:2222/)
